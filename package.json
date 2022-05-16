@@ -1,0 +1,29 @@
+{
+  "name": "te4-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcusbillman/te4-discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcusbillman/te4-discord-bot/issues"
+  },
+  "homepage": "https://github.com/marcusbillman/te4-discord-bot#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.1",
+    "mongodb": "^4.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
