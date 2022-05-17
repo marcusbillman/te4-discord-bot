@@ -1,6 +1,9 @@
 const database = require('./database');
 
 async function handleMessage(message, distube) {
+  const guildId = message.guild.id;
+  if (!(await guildAllowsTrigger(guildId))) return;
+
   const ad = await database.getTopAdForQuery(message.content);
   if (ad == null) return;
 
@@ -8,6 +11,16 @@ async function handleMessage(message, distube) {
     playAdVideo(ad.videoUrl, message, distube);
   }
   await replyWithSegueAndAd(ad, message);
+
+  await database.upsertLastTrigger(guildId);
+}
+
+async function guildAllowsTrigger(guildId) {
+  const COOLDOWN_TIME = 10 * 1000;
+
+  const lastTrigger = await database.getLastTrigger(guildId);
+  const timeSinceLastTrigger = new Date() - lastTrigger;
+  return lastTrigger == null || timeSinceLastTrigger >= COOLDOWN_TIME;
 }
 
 function playAdVideo(videoUrl, message, distube) {
