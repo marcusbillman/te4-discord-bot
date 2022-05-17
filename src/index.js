@@ -1,5 +1,5 @@
 const { Client, Intents } = require('discord.js');
-const handleMessage = require('./message-handler');
+const { handleMessage } = require('./message-handler');
 require('dotenv').config();
 
 const client = new Client({
