@@ -8,15 +8,40 @@ const client = new MongoClient(process.env.MONGODB_URI, {
 });
 
 async function getTopAdForQuery(query) {
-  await client.connect();
-
-  const db = client.db('Bot');
-  const collection = db.collection('Ads');
-  const ad = await collection.findOne({
-    $text: { $search: 'vpn' },
-  });
+  const collection = await getCollection('Ads');
+  const cursor = await collection.aggregate([
+    {
+      $search: {
+        index: 'keywords',
+        text: { query: query, path: { wildcard: '*' } },
+      },
+    },
+  ]);
+  const ad = await cursor.tryNext();
+  client.close();
 
   return ad;
 }
 
-module.exports = { getAllData };
+async function getRandomSegue() {
+  const collection = await getCollection('Segues');
+  const cursor = await collection.aggregate([
+    {
+      $sample: { size: 1 },
+    },
+  ]);
+  const segue = await cursor.tryNext();
+  client.close();
+
+  return segue;
+}
+
+async function getCollection(collectionName) {
+  await client.connect();
+  const db = client.db(process.env.MONGODB_DB);
+  const collection = db.collection(collectionName);
+
+  return collection;
+}
+
+module.exports = { getTopAdForQuery, getRandomSegue };
