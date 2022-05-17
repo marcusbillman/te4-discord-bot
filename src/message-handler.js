@@ -35,7 +35,7 @@ async function replyWithSegueAndAd(ad, message) {
   const segue = await database.getRandomSegue();
 
   const firstKeyword = ad.keywords.find((keyword) =>
-    message.content.includes(keyword)
+    message.content.toLowerCase().includes(keyword)
   );
   const interpolatedSegue = segue.content
     .replace('[N]', ad.name)
