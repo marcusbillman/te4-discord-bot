@@ -51,7 +51,7 @@ async function getLastTrigger(guildId) {
 
   client.close();
 
-  return guildInfo.lastTrigger;
+  return guildInfo?.lastTrigger;
 }
 
 async function upsertLastTrigger(guildId) {
