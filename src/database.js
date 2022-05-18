@@ -42,6 +42,33 @@ async function getRandomSegue() {
   return segue;
 }
 
+async function getGuild(guildId) {
+  const collection = await getCollection('Guilds');
+  const query = { guildId: guildId };
+  const guild = await collection.findOne(query);
+
+  client.close();
+  return guild;
+}
+
+async function setGuildOptions(guildId, guildOptions) {
+  const collection = await getCollection('Guilds');
+
+  const query = {
+    guildId: guildId,
+  };
+  const update = {
+    $set: {
+      options: guildOptions,
+    },
+  };
+  const options = { upsert: true };
+
+  await collection.updateOne(query, update, options);
+
+  client.close();
+}
+
 async function getLastTrigger(guildId) {
   const collection = await getCollection('Guilds');
 
@@ -85,6 +112,8 @@ async function getCollection(collectionName) {
 module.exports = {
   getTopAdForQuery,
   getRandomSegue,
+  getGuild,
+  setGuildOptions,
   upsertLastTrigger,
   getLastTrigger,
 };
