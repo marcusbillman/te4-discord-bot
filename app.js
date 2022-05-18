@@ -1,7 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { DisTube } = require('distube');
 const { YtDlpPlugin } = require('@distube/yt-dlp');
-const { handleMessage } = require('./message-handler');
+const { handleMessage } = require('./src/message-handler');
 require('dotenv').config();
 
 const client = new Client({
