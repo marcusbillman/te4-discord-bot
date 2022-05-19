@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { DEFAULT_GUILD_OPTIONS } = require('../constants');
 const database = require('../database');
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
       option
         .setName('cooldown')
         .setDescription(
-          'Minimum time in minutes between ad messages (default: 30)'
+          `Minimum time in minutes between ad messages (default: ${DEFAULT_GUILD_OPTIONS.cooldown})`
         )
         .setMinValue(0)
     )
@@ -19,7 +20,7 @@ module.exports = {
       option
         .setName('enabled')
         .setDescription(
-          'Whether the bot should react to messages (default: true)'
+          `Whether the bot should react to messages (default: ${DEFAULT_GUILD_OPTIONS.enabled})`
         )
     ),
   async execute(interaction) {
