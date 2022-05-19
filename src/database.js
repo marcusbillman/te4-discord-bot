@@ -1,4 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { DEFAULT_GUILD_OPTIONS } = require('./constants');
 require('dotenv').config();
 
 const client = new MongoClient(process.env.MONGODB_URI, {
@@ -46,6 +47,13 @@ async function getGuild(guildId) {
   const collection = await getCollection('Guilds');
   const query = { guildId: guildId };
   const guild = await collection.findOne(query);
+
+  // Set any missing guild options to default values
+  for (const [key, value] of Object.entries(DEFAULT_GUILD_OPTIONS)) {
+    if (guild.options[key] == null) {
+      guild.options[key] = value;
+    }
+  }
 
   client.close();
   return guild;
