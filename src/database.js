@@ -59,6 +59,14 @@ async function getGuild(guildId) {
   return guild;
 }
 
+async function getAllGuilds() {
+  const collection = await getCollection('Guilds');
+  const guilds = await collection.find({}).toArray();
+
+  client.close();
+  return guilds;
+}
+
 async function setGuildOptions(guildId, guildOptions) {
   const collection = await getCollection('Guilds');
 
@@ -122,6 +130,7 @@ module.exports = {
   getTopAdForQuery,
   getRandomSegue,
   getGuild,
+  getAllGuilds,
   setGuildOptions,
   upsertLastTrigger,
   getLastTrigger,
