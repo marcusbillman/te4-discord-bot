@@ -1,7 +1,7 @@
 module.exports = {
   name: 'interactionCreate',
   once: false,
-  execute(interaction) {
+  execute(client, interaction) {
     handleInteraction(interaction);
   },
 };
