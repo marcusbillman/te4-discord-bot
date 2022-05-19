@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./app.js"
+    "start": "nodemon ./app.js",
+    "register": "node ./register-commands.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/marcusbillman/te4-discord-bot#readme",
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
+    "@discordjs/rest": "^0.4.1",
     "@distube/yt-dlp": "^1.0.2",
     "axios": "^0.27.2",
     "discord.js": "^13.7.0",
