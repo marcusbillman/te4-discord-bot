@@ -67,6 +67,7 @@ async function setGuildOptions(guildId, guildOptions) {
   };
   const update = {
     $set: {
+      guildId: guildId,
       options: guildOptions,
     },
   };
