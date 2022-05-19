@@ -16,11 +16,16 @@ async function handleMessage(message, distube) {
 }
 
 async function guildAllowsTrigger(guildId) {
-  const COOLDOWN_TIME = 10 * 1000;
+  const guild = await database.getGuild(guildId);
 
-  const lastTrigger = await database.getLastTrigger(guildId);
+  const enabled = guild.options.enabled;
+  if (!enabled) return;
+
+  const lastTrigger = guild.lastTrigger;
   const timeSinceLastTrigger = new Date() - lastTrigger;
-  return lastTrigger == null || timeSinceLastTrigger >= COOLDOWN_TIME;
+  const cooldown = guild.options.cooldown * 60 * 1000;
+
+  return lastTrigger == null || timeSinceLastTrigger >= cooldown;
 }
 
 function playAdVideo(videoUrl, message, distube) {
