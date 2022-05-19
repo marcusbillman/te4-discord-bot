@@ -1,4 +1,13 @@
-const database = require('./database');
+const database = require('../database');
+
+module.exports = {
+  name: 'messageCreate',
+  once: false,
+  execute(client, message) {
+    if (message.author.bot) return;
+    handleMessage(message, client.distube);
+  },
+};
 
 async function handleMessage(message, distube) {
   const guildId = message.guild.id;
@@ -48,5 +57,3 @@ async function replyWithSegueAndAd(ad, message) {
 
   message.reply(`${interpolatedSegue}\n\n${ad.content}`);
 }
-
-module.exports = { handleMessage };
