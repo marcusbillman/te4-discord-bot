@@ -58,9 +58,17 @@ async function replyWithSegueAndAd(ad, message) {
       .split(/\s+/)
       .includes(keyword.toLowerCase())
   );
-  const interpolatedSegue = segue.content
-    .replace('[N]', ad.name)
-    .replace('[K]', firstKeyword);
 
-  message.reply(`${interpolatedSegue}\n\n${ad.content}`);
+  const processedSegue = segue.content
+    .replace('[N]', ad.name)
+    .replace('[K]', firstKeyword)
+    .replace(
+      // Capitalize first letter of each sentence using RegEx witchcraft
+      /(?<=(?:^|[.?!])[^\wŽžÀ-ÿ]*)[\wŽžÀ-ÿ]/g,
+      (i) => i.toUpperCase()
+    );
+
+  const finalMessage = `**${processedSegue}**\n${ad.content}`;
+
+  message.reply(finalMessage);
 }
