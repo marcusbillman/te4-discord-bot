@@ -11,30 +11,33 @@ module.exports = {
 
 async function handleMessage(message, distube) {
   const guildId = message.guild.id;
-  if (!(await guildAllowsTrigger(guildId))) return;
+  const guild = await database.getGuild(guildId);
+
+  // Check whether bot is enabled
+  const enabled = guild.options.enabled;
+  if (!enabled) return;
+
+  // Check whether cooldown has elapsed
+  const lastTrigger = guild.lastTrigger;
+  const timeSinceLastTrigger = new Date() - lastTrigger;
+  const cooldown = guild.options.cooldown * 60 * 1000;
+  const cooldownElapsed =
+    lastTrigger == null || timeSinceLastTrigger >= cooldown;
+  if (!cooldownElapsed) return;
 
   const ad = await database.getTopAdForQuery(message.content);
   if (ad == null) return;
 
-  if (message.member.voice.channel != null && ad.videoUrl != null) {
+  if (
+    guild.options.audio &&
+    ad.videoUrl != null &&
+    message.member.voice.channel != null
+  ) {
     playAdVideo(ad.videoUrl, message, distube);
   }
   await replyWithSegueAndAd(ad, message);
 
   await database.upsertLastTrigger(guildId);
-}
-
-async function guildAllowsTrigger(guildId) {
-  const guild = await database.getGuild(guildId);
-
-  const enabled = guild.options.enabled;
-  if (!enabled) return;
-
-  const lastTrigger = guild.lastTrigger;
-  const timeSinceLastTrigger = new Date() - lastTrigger;
-  const cooldown = guild.options.cooldown * 60 * 1000;
-
-  return lastTrigger == null || timeSinceLastTrigger >= cooldown;
 }
 
 function playAdVideo(videoUrl, message, distube) {

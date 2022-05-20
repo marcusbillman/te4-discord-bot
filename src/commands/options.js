@@ -22,6 +22,13 @@ module.exports = {
         .setDescription(
           `Whether the bot should react to messages (default: ${DEFAULT_GUILD_OPTIONS.enabled})`
         )
+    )
+    .addBooleanOption((option) =>
+      option
+        .setName('audio')
+        .setDescription(
+          `Whether the bot should play ad videos in voice channels (default: ${DEFAULT_GUILD_OPTIONS.audio})`
+        )
     ),
   async execute(interaction) {
     const commandOptions = interaction.options.data;
