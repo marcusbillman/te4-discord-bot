@@ -10,9 +10,9 @@ module.exports = {
     )
     .addIntegerOption((option) =>
       option
-        .setName('cooldown')
+        .setName('probability')
         .setDescription(
-          `Minimum time in minutes between messages (default: ${DEFAULT_GUILD_OPTIONS.cooldown})`
+          `Probability that the bot will react to a message (default: ${DEFAULT_GUILD_OPTIONS.probability})`
         )
         .setMinValue(0)
     )

@@ -17,13 +17,10 @@ async function handleMessage(message, distube) {
   const enabled = guild.options.enabled;
   if (!enabled) return;
 
-  // Check whether cooldown has elapsed
-  const lastTrigger = guild.lastTrigger;
-  const timeSinceLastTrigger = new Date() - lastTrigger;
-  const cooldown = guild.options.cooldown * 60 * 1000;
-  const cooldownElapsed =
-    lastTrigger == null || timeSinceLastTrigger >= cooldown;
-  if (!cooldownElapsed) return;
+  // Determine whether to reply based on guild probability option
+  const probability = guild.options.probability;
+  const outcomeIsFavorable = Math.random() <= probability;
+  if (!outcomeIsFavorable) return;
 
   const ad = await database.getTopAdForQuery(message.content);
   if (ad == null) return;

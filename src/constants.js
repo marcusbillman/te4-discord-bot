@@ -1,7 +1,7 @@
 module.exports = {
   DEFAULT_GUILD_OPTIONS: {
     enabled: true,
-    cooldown: 10,
+    probability: 0.25,
     audio: true,
   },
 };
