@@ -4,6 +4,7 @@ const { DEFAULT_GUILD_OPTIONS } = require('../src/constants');
 console.log('Updating guild options... Press Ctrl+C when output has stopped.');
 
 (async function () {
+  await database.connect();
   const guilds = await database.getAllGuilds();
 
   guilds.forEach((guild) => {

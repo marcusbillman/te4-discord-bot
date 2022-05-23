@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { DisTube } = require('distube');
 const { YtDlpPlugin } = require('@distube/yt-dlp');
+const database = require('./src/database');
 require('dotenv').config();
 
 const client = new Client({
@@ -42,5 +43,7 @@ for (const file of eventFiles) {
     client.on(event.name, (...args) => event.execute(client, ...args));
   }
 }
+
+database.connect();
 
 client.login(process.env.TOKEN);
