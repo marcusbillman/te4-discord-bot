@@ -6,28 +6,28 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('options')
     .setDescription(
-      'Change how Ad Bot works on this server. Leave command blank to view current options.'
+      'Configure the bot on this server. Leave command blank to view current options.'
     )
     .addIntegerOption((option) =>
       option
         .setName('cooldown')
         .setDescription(
-          `Minimum time in minutes between ad messages (default: ${DEFAULT_GUILD_OPTIONS.cooldown})`
+          `Minimum time in minutes between messages (default: ${DEFAULT_GUILD_OPTIONS.cooldown})`
         )
         .setMinValue(0)
+    )
+    .addBooleanOption((option) =>
+      option
+        .setName('audio')
+        .setDescription(
+          `Whether the bot should join and play audio in voice channels (default: ${DEFAULT_GUILD_OPTIONS.audio})`
+        )
     )
     .addBooleanOption((option) =>
       option
         .setName('enabled')
         .setDescription(
           `Whether the bot should react to messages (default: ${DEFAULT_GUILD_OPTIONS.enabled})`
-        )
-    )
-    .addBooleanOption((option) =>
-      option
-        .setName('audio')
-        .setDescription(
-          `Whether the bot should play ad videos in voice channels (default: ${DEFAULT_GUILD_OPTIONS.audio})`
         )
     ),
   async execute(interaction) {
