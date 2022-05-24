@@ -8,13 +8,14 @@ module.exports = {
     .setDescription(
       'Configure the bot on this server. Leave command blank to view current options.'
     )
-    .addIntegerOption((option) =>
+    .addNumberOption((option) =>
       option
         .setName('probability')
         .setDescription(
           `Probability that the bot will react to a message (default: ${DEFAULT_GUILD_OPTIONS.probability})`
         )
         .setMinValue(0)
+        .setMaxValue(1)
     )
     .addBooleanOption((option) =>
       option
