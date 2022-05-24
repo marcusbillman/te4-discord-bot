@@ -25,6 +25,8 @@ async function handleMessage(message, distube) {
   const ad = await database.getTopAdForQuery(message.content);
   if (ad == null) return;
 
+  console.log(`Sending ad - ${message.author.username}: ${message.content}`);
+
   if (
     guild.options.audio &&
     ad.videoUrl != null &&
