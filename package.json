@@ -29,7 +29,8 @@
     "dotenv": "^16.0.1",
     "ffmpeg-static": "^4.4.1",
     "mongodb": "^4.6.0",
-    "sodium": "^3.0.2"
+    "sodium": "^3.0.2",
+    "weighted": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
