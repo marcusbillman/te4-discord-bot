@@ -1,4 +1,6 @@
 const database = require('../database');
+const weighted = require('weighted');
+
 
 module.exports = {
   name: 'messageCreate',
@@ -22,8 +24,15 @@ async function handleMessage(message, distube) {
   const outcomeIsFavorable = Math.random() <= probability;
   if (!outcomeIsFavorable) return;
 
-  const ad = await database.getTopAdForQuery(message.content);
-  if (ad == null) return;
+  const ads = await database.getAdsForQuery(message.content);
+  if (ads.length <= 0) return;
+
+  let scores = [];
+  ads.forEach(ad => {
+    scores.push(ad.score);
+  });
+
+  const ad = weighted.select(ads, scores)
 
   console.log(`Sending ad - ${message.author.username}: ${message.content}`);
 

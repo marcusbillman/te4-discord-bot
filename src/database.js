@@ -6,6 +6,7 @@ let client;
 let db;
 
 async function connect() {
+  
   client = new MongoClient(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -19,7 +20,7 @@ async function close() {
   client.close();
 }
 
-async function getTopAdForQuery(query) {
+async function getAdsForQuery(query) {
   const collection = db.collection('Ads');
 
   const aggregationPipeline = [
@@ -28,13 +29,24 @@ async function getTopAdForQuery(query) {
         index: 'keywords',
         text: { query: query, path: { wildcard: '*' } },
       },
-    },
+    },  
+    {
+      $project: {
+        "_id": 0,
+        "name": 1,
+        "keywords": 1,
+        "videoUrl": 1,
+        "content": 1,
+        "score": { "$meta": "searchScore" }
+      }
+    }
   ];
 
   const cursor = await collection.aggregate(aggregationPipeline);
-  const ad = await cursor.tryNext();
 
-  return ad;
+  const ads = await cursor.toArray();
+
+  return ads
 }
 
 async function getRandomSegue() {
@@ -122,7 +134,7 @@ async function upsertLastTrigger(guildId) {
 module.exports = {
   connect,
   close,
-  getTopAdForQuery,
+  getAdsForQuery,
   getRandomSegue,
   getGuild,
   getAllGuilds,
