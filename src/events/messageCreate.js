@@ -1,7 +1,6 @@
 const database = require('../database');
 const weighted = require('weighted');
 
-
 module.exports = {
   name: 'messageCreate',
   once: false,
@@ -28,11 +27,11 @@ async function handleMessage(message, distube) {
   if (ads.length <= 0) return;
 
   let scores = [];
-  ads.forEach(ad => {
+  ads.forEach((ad) => {
     scores.push(ad.score);
   });
 
-  const ad = weighted.select(ads, scores)
+  const ad = weighted.select(ads, scores);
 
   console.log(`Sending ad - ${message.author.username}: ${message.content}`);
 
@@ -59,17 +58,11 @@ function playAdVideo(videoUrl, message, distube) {
 async function replyWithSegueAndAd(ad, message) {
   const segue = await database.getRandomSegue();
 
-  const firstKeyword = ad.keywords.find((keyword) =>
-    message.content
-      .toLowerCase()
-      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ' ')
-      .split(/\s+/)
-      .includes(keyword.toLowerCase())
-  );
+  const keyword = ad.highlights[0].texts[0].value;
 
   const processedSegue = segue.content
     .replace('[N]', ad.name)
-    .replace('[K]', firstKeyword)
+    .replace('[K]', keyword)
     .replace(
       // Capitalize first letter of each sentence using RegEx witchcraft
       /(?<=(?:^|[.?!])[^\wŽžÀ-ÿ]*)[\wŽžÀ-ÿ]/g,
