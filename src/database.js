@@ -6,7 +6,6 @@ let client;
 let db;
 
 async function connect() {
-  
   client = new MongoClient(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -28,25 +27,31 @@ async function getAdsForQuery(query) {
       $search: {
         index: 'keywords',
         text: { query: query, path: { wildcard: '*' } },
+        highlight: {
+          path: 'keywords',
+        },
       },
-    },  
+    },
     {
       $project: {
-        "_id": 0,
-        "name": 1,
-        "keywords": 1,
-        "videoUrl": 1,
-        "content": 1,
-        "score": { "$meta": "searchScore" }
-      }
-    }
+        _id: 0,
+        name: 1,
+        keywords: 1,
+        videoUrl: 1,
+        content: 1,
+        score: { $meta: 'searchScore' },
+        highlights: { $meta: 'searchHighlights' },
+      },
+    },
   ];
 
   const cursor = await collection.aggregate(aggregationPipeline);
 
   const ads = await cursor.toArray();
 
-  return ads
+  console.log(ads[0].highlights);
+
+  return ads;
 }
 
 async function getRandomSegue() {
