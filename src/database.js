@@ -49,8 +49,6 @@ async function getAdsForQuery(query) {
 
   const ads = await cursor.toArray();
 
-  console.log(ads[0].highlights);
-
   return ads;
 }
 
