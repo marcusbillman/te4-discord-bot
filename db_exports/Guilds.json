@@ -1,0 +1,19 @@
+[
+  {
+    "_id": {"$oid": "62839ea24c50a30cab707619"},
+    "guildId": "975694808121233419",
+    "lastTrigger": {"$date": "2022-05-30T13:29:50.739Z"},
+    "options": "{enabled=true, probability=1, audio=true}"
+  },
+  {
+    "_id": {"$oid": "628b5e8d8d7e5d0958ebcee9"},
+    "guildId": "546328626375819275",
+    "lastTrigger": {"$date": "2023-03-02T22:59:31.572Z"},
+    "options": "{enabled=true, probability=0.25, audio=false}"
+  },
+  {
+    "_id": {"$oid": "6299a7fecd7cc7391f8c115a"},
+    "guildId": "624537958141394965",
+    "options": "{enabled=true, probability=0.25, audio=true}"
+  }
+]

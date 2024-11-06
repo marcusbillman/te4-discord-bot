@@ -1,0 +1,86 @@
+[
+  {
+    "_id": {"$oid": "62823f96701e8507b92cb24d"},
+    "content": "På tal om [K], låt mig berätta om [N]"
+  },
+  {
+    "_id": {"$oid": "62824236701e8507b92cb24f"},
+    "content": "Eftersom du nämnde [K] skulle du nog gilla [N]"
+  },
+  {
+    "_id": {"$oid": "62824261701e8507b92cb250"},
+    "content": "Hörde jag [K]? Det påminner mig om [N]"
+  },
+  {
+    "_id": {"$oid": "628242b8701e8507b92cb251"},
+    "content": "[N] är perfekt när det gäller [K]!"
+  },
+  {
+    "_id": {"$oid": "628242d5701e8507b92cb252"},
+    "content": "Prata inte om [K] utan att prata om [N]!"
+  },
+  {
+    "_id": {"$oid": "628616ae547fba0e67e17146"},
+    "content": "[K]? Du skulle nog gilla [N]"
+  },
+  {
+    "_id": {"$oid": "628616ca547fba0e67e17147"},
+    "content": "På [K]-spåret, varför inte ge [N] ett försök?"
+  },
+  {
+    "_id": {"$oid": "628616eb547fba0e67e17148"},
+    "content": "[K]! Men du, då ska du kolla in [N]!"
+  },
+  {
+    "_id": {"$oid": "62861701547fba0e67e17149"},
+    "content": "[N] är praktiskt taget definitionen av [K]"
+  },
+  {
+    "_id": {"$oid": "62861729547fba0e67e1714a"},
+    "content": "[K]? [N]"
+  },
+  {
+    "_id": {"$oid": "62861745547fba0e67e1714b"},
+    "content": "Som din personliga [K]-rådgivare skulle jag rekommendera [N]"
+  },
+  {
+    "_id": {"$oid": "628617f7547fba0e67e1714c"},
+    "content": "[N] kan [K]!"
+  },
+  {
+    "_id": {"$oid": "6286182c547fba0e67e1714d"},
+    "content": "[N] är lösningen på ditt [K]-problem"
+  },
+  {
+    "_id": {"$oid": "62861867547fba0e67e1714e"},
+    "content": "Andra som letat efter [K] har köpt [N]"
+  },
+  {
+    "_id": {"$oid": "62861911547fba0e67e1714f"},
+    "content": "Du skrev '[K]'. Menade du '[N]'?"
+  },
+  {
+    "_id": {"$oid": "62861931547fba0e67e17150"},
+    "content": "[K]? Är du fucking dum? Skaffa [N]."
+  },
+  {
+    "_id": {"$oid": "6286194d547fba0e67e17151"},
+    "content": "Jag hatar när folk snackar om [K] utan att ha [N]"
+  },
+  {
+    "_id": {"$oid": "62861998547fba0e67e17152"},
+    "content": "Du! Jag kom nyss att tänka på en grej."
+  },
+  {
+    "_id": {"$oid": "628619de547fba0e67e17154"},
+    "content": "Jag säger bara två saker. [K]. [N]."
+  },
+  {
+    "_id": {"$oid": "628e0e76a16ec982d0777cdc"},
+    "content": "[K], snarare [N]!"
+  },
+  {
+    "_id": {"$oid": "628e0e8da16ec982d0777cdd"},
+    "content": "[K], more like [N]!"
+  }
+]
